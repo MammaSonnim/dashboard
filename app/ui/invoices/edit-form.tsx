@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+import { useActionState } from 'react';
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import {
   CheckIcon,
@@ -7,9 +9,9 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { updateInvoice } from '@/app/lib/actions';
+import { useNotification } from '../notification-context';
 
 export default function EditInvoiceForm({
   invoice,
@@ -19,9 +21,18 @@ export default function EditInvoiceForm({
   customers: CustomerField[];
 }) {
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  const [state, formAction] = useActionState(updateInvoiceWithId, {
+    success: false,
+    message: ''
+  });
+  const { setMessage } = useNotification();
+
+  if (state?.message) {
+    setMessage(state.message);
+  }
   
   return (
-    <form action={updateInvoiceWithId}>
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">

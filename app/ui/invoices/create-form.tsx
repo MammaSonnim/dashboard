@@ -1,17 +1,31 @@
-import { CustomerField } from '@/app/lib/definitions';
+'use client';
+
 import Link from 'next/link';
+import { useActionState } from 'react';
 import {
   CheckIcon,
   ClockIcon,
   CurrencyDollarIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
+import { CustomerField } from '@/app/lib/definitions';
 import { Button } from '@/app/ui/button';
 import { createInvoice } from '@/app/lib/actions';
+import { useNotification } from '../notification-context';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const [state, formAction] = useActionState(createInvoice, {
+    success: false,
+    message: ''
+  });
+  const { setMessage } = useNotification();
+
+  if (state?.message) {
+    setMessage(state.message);
+  }
+  
   return (
-    <form action={createInvoice}>
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
