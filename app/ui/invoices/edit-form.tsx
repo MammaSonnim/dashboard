@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useEffect, useActionState } from 'react';
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import {
   CheckIcon,
@@ -23,14 +23,16 @@ export default function EditInvoiceForm({
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
   const [state, formAction] = useActionState(updateInvoiceWithId, {
     success: false,
-    message: ''
+    message: '',
   });
   const { setMessage } = useNotification();
 
-  if (state?.message) {
-    setMessage(state.message);
-  }
-  
+  useEffect(() => {
+    if (state.message) {
+      setMessage(state.message);
+    }
+  }, [state, setMessage]);
+
   return (
     <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">

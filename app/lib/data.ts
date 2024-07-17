@@ -9,7 +9,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
-export async function fetchRevenue() {
+export async function fetchRevenue(): Promise<Revenue[] | undefined> {
   try {
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
@@ -60,7 +60,9 @@ export async function fetchCardData() {
 
     const numberOfInvoices = Number(data[0].rows[0].count ?? '0');
     const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
     return {
@@ -79,7 +81,7 @@ const ITEMS_PER_PAGE = 6;
 export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
-) {
+): Promise<InvoicesTable[] | undefined> {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
@@ -132,7 +134,9 @@ export async function fetchInvoicesPages(query: string) {
   }
 }
 
-export async function fetchInvoiceById(id: string) {
+export async function fetchInvoiceById(
+  id: string,
+): Promise<InvoiceForm | undefined> {
   try {
     const data = await sql<InvoiceForm>`
       SELECT

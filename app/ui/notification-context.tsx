@@ -7,9 +7,13 @@ interface NotificationContextType {
   setMessage: (message: string | null) => void;
 }
 
-const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined,
+);
 
-export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [message, setMessage] = useState<string | null>(null);
 
   return (
@@ -21,10 +25,12 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
 
 export const useNotification = (): NotificationContextType => {
   const context = useContext(NotificationContext);
-  
+
   if (!context) {
-    throw new Error('useNotification must be used within a NotificationProvider');
+    throw new Error(
+      'useNotification must be used within a NotificationProvider',
+    );
   }
-  
+
   return context;
 };

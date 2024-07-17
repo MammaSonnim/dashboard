@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useEffect, useActionState } from 'react';
 import {
   CheckIcon,
   ClockIcon,
@@ -16,14 +16,15 @@ import { useNotification } from '../notification-context';
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const [state, formAction] = useActionState(createInvoice, {
     success: false,
-    message: ''
+    message: '',
   });
   const { setMessage } = useNotification();
 
-  if (state?.message) {
-    setMessage(state.message);
-  }
-  
+  useEffect(() => {
+    if (state.message) {
+      setMessage(state.message);
+    }
+  }, [state, setMessage]);
   return (
     <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">

@@ -2,47 +2,47 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
-export type User = {
+export interface User {
   id: string;
   name: string;
   email: string;
   password: string;
-};
+}
 
-export type Customer = {
+export interface Customer {
   id: string;
   name: string;
   email: string;
   image_url: string;
-};
+}
 
-export type Invoice = {
+export interface Invoice {
   id: string;
   customer_id: string;
   amount: number;
   date: string;
   status: 'pending' | 'paid';
-};
+}
 
-export type Revenue = {
+export interface Revenue {
   month: string;
   revenue: number;
-};
+}
 
-export type LatestInvoice = {
+export interface LatestInvoice {
   id: string;
   name: string;
   image_url: string;
   email: string;
   amount: string;
-};
+}
 
 // The database returns a number for amount, but we later format it to a string with the formatCurrency function
 export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
   amount: number;
 };
 
-export type InvoicesTable = {
+export interface InvoicesTable {
   id: string;
   customer_id: string;
   name: string;
@@ -51,9 +51,9 @@ export type InvoicesTable = {
   date: string;
   amount: number;
   status: 'pending' | 'paid';
-};
+}
 
-export type CustomersTableType = {
+export interface CustomersTableType {
   id: string;
   name: string;
   email: string;
@@ -61,9 +61,9 @@ export type CustomersTableType = {
   total_invoices: number;
   total_pending: number;
   total_paid: number;
-};
+}
 
-export type FormattedCustomersTable = {
+export interface FormattedCustomersTable {
   id: string;
   name: string;
   email: string;
@@ -71,21 +71,21 @@ export type FormattedCustomersTable = {
   total_invoices: number;
   total_pending: string;
   total_paid: string;
-};
+}
 
-export type CustomerField = {
+export interface CustomerField {
   id: string;
   name: string;
-};
+}
 
-export type InvoiceForm = {
+export interface InvoiceForm {
   id: string;
   customer_id: string;
   amount: number;
   status: 'pending' | 'paid';
-};
+}
 
-export type ServerActionState = {
+export interface ServerActionState {
   success: boolean;
   message: string;
 }

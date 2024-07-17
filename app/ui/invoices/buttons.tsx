@@ -33,7 +33,7 @@ export function DeleteInvoice({ id }: { id: string }) {
   const deleteInvoiceWithId = deleteInvoice.bind(null, id);
   const [state, formAction] = useActionState(deleteInvoiceWithId, {
     success: false,
-    message: ''
+    message: '',
   });
   const { setMessage } = useNotification();
 
@@ -41,8 +41,7 @@ export function DeleteInvoice({ id }: { id: string }) {
     if (state?.message) {
       setMessage(state.message);
     }
-  }, [state])
-
+  }, [state, setMessage]);
 
   return (
     <form action={formAction}>
