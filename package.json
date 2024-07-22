@@ -6,7 +6,10 @@
     "start": "next start",
     "lint": "next lint",
     "pre-test": "next build && next start",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "prepare": "husky",
+    "format": "prettier --write \"app/**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
+    "check": "prettier --check \"app/**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\""
   },
   "dependencies": {
     "@heroicons/react": "^2.1.4",
@@ -34,10 +37,14 @@
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
+    "@vercel/style-guide": "^6.0.0",
     "dotenv": "^16.4.5",
     "eslint-config-next": "^14.2.5",
     "eslint-config-prettier": "^9.1.0",
-    "prettier": "^3.3.3"
+    "husky": "^9.1.1",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.5"
   },
   "engines": {
     "node": ">=20.12.0"
