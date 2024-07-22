@@ -1,10 +1,44 @@
-name: Playwright Tests
+name: code-checks
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm install -g pnpm && pnpm install
+
+      - name: Run ESLint
+        run: pnpm lint
+        env:
+          NODE_ENV: development
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm install -g pnpm && pnpm install
+
+      - name: Check Prettier
+        run: pnpm check
+        env:
+          NODE_ENV: development
   test:
     timeout-minutes: 60
     environment: test
