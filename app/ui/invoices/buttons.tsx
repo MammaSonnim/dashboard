@@ -32,7 +32,6 @@ export function UpdateInvoice({ id }: { id: string }) {
 export function DeleteInvoice({ id }: { id: string }) {
   const deleteInvoiceWithId = deleteInvoice.bind(null, id);
   const [state, formAction] = useActionState(deleteInvoiceWithId, {
-    success: false,
     message: '',
   });
   const { setMessage } = useNotification();
