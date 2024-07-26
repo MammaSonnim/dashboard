@@ -2,14 +2,15 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "check": "prettier --check \"app/**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
     "dev": "next dev",
-    "start": "next start",
-    "lint": "next lint",
-    "pre-test": "next build && next start",
-    "test": "npx playwright test",
-    "prepare": "husky",
     "format": "prettier --write \"app/**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
-    "check": "prettier --check \"app/**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\""
+    "lint": "next lint",
+    "prepare": "husky",
+    "start": "next start",
+    "test": "npx playwright test",
+    "test-debug": "npx playwright test --headed --debug",
+    "test-prepare": "next build && next start"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.4",
