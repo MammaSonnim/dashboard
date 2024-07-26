@@ -6,6 +6,7 @@ Based on [Next.js App Router Course](https://nextjs.org/learn), but I also imple
 ### Stack:
 
 - Next.js
+- Vercel + Postgres
 - React Server Components
 - Tailwind CSS
 - Playwright

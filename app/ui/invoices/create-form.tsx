@@ -14,7 +14,7 @@ import { createInvoice } from '@/app/lib/actions';
 import { useNotification } from '../notification-context';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
-  const [state, formAction] = useActionState(createInvoice, {
+  const [state, formAction, isPending] = useActionState(createInvoice, {
     message: '',
     errors: {},
   });
@@ -147,7 +147,9 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         >
           Cancel
         </Link>
-        <Button type="submit">Create Invoice</Button>
+        <Button type="submit" aria-disabled={isPending}>
+          Create Invoice
+        </Button>
       </div>
     </form>
   );

@@ -31,7 +31,7 @@ export function UpdateInvoice({ id }: { id: string }) {
 
 export function DeleteInvoice({ id }: { id: string }) {
   const deleteInvoiceWithId = deleteInvoice.bind(null, id);
-  const [state, formAction] = useActionState(deleteInvoiceWithId, {
+  const [state, formAction, isPending] = useActionState(deleteInvoiceWithId, {
     message: '',
   });
   const { setMessage } = useNotification();
@@ -44,7 +44,10 @@ export function DeleteInvoice({ id }: { id: string }) {
 
   return (
     <form action={formAction}>
-      <button className="rounded-md border p-2 hover:bg-gray-100">
+      <button
+        className="rounded-md border p-2 hover:bg-gray-100 aria-disabled:pointer-events-none aria-disabled:opacity-50"
+        aria-disabled={isPending}
+      >
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>

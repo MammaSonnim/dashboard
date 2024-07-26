@@ -21,7 +21,7 @@ export default function EditInvoiceForm({
   customers: CustomerField[];
 }) {
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
-  const [state, formAction] = useActionState(updateInvoiceWithId, {
+  const [state, formAction, isPending] = useActionState(updateInvoiceWithId, {
     message: '',
     errors: {},
   });
@@ -157,7 +157,9 @@ export default function EditInvoiceForm({
         >
           Cancel
         </Link>
-        <Button type="submit">Edit Invoice</Button>
+        <Button type="submit" aria-disabled={isPending}>
+          Edit Invoice
+        </Button>
       </div>
     </form>
   );
