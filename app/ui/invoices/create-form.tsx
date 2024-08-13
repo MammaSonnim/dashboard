@@ -9,9 +9,9 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { CustomerField } from '@/app/lib/definitions';
-import { Button } from '@/app/ui/button';
 import { createInvoice } from '@/app/lib/actions';
-import { useNotification } from '../notification-context';
+import { Button } from '@/app/ui/button';
+import { useNotification } from '@/app/ui/providers/notification';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const [state, formAction, isPending] = useActionState(createInvoice, {

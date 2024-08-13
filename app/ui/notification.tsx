@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useNotification } from './notification-context';
+import { useNotification } from './providers/notification';
 
 export default function Notification() {
   const { message, setMessage } = useNotification();

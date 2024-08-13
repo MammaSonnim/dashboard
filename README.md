@@ -12,3 +12,8 @@ Based on [Next.js App Router Course](https://nextjs.org/learn), but I also imple
 - Playwright
 - Linting/Prettier + Husky + lint-staged
 - Github actions
+
+### Authentication
+
+email: user@nextmail.com
+password: 123456

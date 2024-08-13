@@ -9,9 +9,9 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import { Button } from '@/app/ui/button';
 import { updateInvoice } from '@/app/lib/actions';
-import { useNotification } from '../notification-context';
+import { Button } from '@/app/ui/button';
+import { useNotification } from '@/app/ui/providers/notification';
 
 export default function EditInvoiceForm({
   invoice,
