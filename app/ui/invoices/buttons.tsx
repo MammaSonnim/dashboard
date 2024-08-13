@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useActionState } from 'react';
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { deleteInvoice } from '@/app/lib/actions';
-import { useNotification } from '../notification-context';
+import { useNotification } from '@/app/ui/providers/notification';
 
 export function CreateInvoice() {
   return (
