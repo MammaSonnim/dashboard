@@ -31,17 +31,18 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         <div className="flex -space-x-px">
           {allPages.map((page, index) => {
             let position: 'first' | 'last' | 'single' | 'middle' | undefined;
+            const isEllipsis = String(page).startsWith('ellipsis');
 
             if (index === 0) position = 'first';
             if (index === allPages.length - 1) position = 'last';
             if (allPages.length === 1) position = 'single';
-            if (page === '...') position = 'middle';
+            if (isEllipsis) position = 'middle';
 
             return (
               <PaginationNumber
                 key={page}
-                href={createPageURL(page)}
-                page={page}
+                href={createPageURL(isEllipsis ? '#' : page)}
+                page={isEllipsis ? '...' : page}
                 position={position}
                 isActive={currentPage === page}
               />
