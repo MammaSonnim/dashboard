@@ -10,8 +10,10 @@
     "next/core-web-vitals",
     "prettier"
   ],
+  "plugins": ["react-compiler"],
   "rules": {
-     "@typescript-eslint/restrict-template-expressions": 0,
-     "@typescript-eslint/unbound-method": 0
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/unbound-method": 0,
+    "react-compiler/react-compiler": "error"
   }
 }
