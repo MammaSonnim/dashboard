@@ -14,6 +14,7 @@ export interface Customer {
   name: string;
   email: string;
   image_url: string;
+  status: 'active' | 'inactive' | 'deleted';
 }
 
 export interface Invoice {
